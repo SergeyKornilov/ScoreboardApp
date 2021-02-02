@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>title</title>
+
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script>
+        function updatelist() {
+            $('#event-list').load(document.URL +  ' #event-list');
+        }
+    </script>
+</h:head>
+
+
+<h:body>
+
+<div id="event-list">
+    <table id="event-table">
+        <tr>
+            <td>Date</td>
+            <td>Status</td>
+            <td>Time</td>
+            <td>Type</td>
+            <td>Name</td>
+            <td>Dose</td>
+            <td>Patient</td>
+        </tr>
+        <tr>
+            <h:panelGroup id="events-group">
+                <ui:repeat id="events_repeat" var="event" value="#{events}">
+                    <td><h:outputText value="#{event.date}"/></td>
+                    <td><h:outputText value="#{event.status}"/></td>
+                    <td><h:outputText value="#{event.time}"/></td>
+                    <td><h:outputText value="#{event.type}"/></td>
+                    <td><h:outputText value="#{event.name}"/></td>
+                    <td><h:outputText value="#{event.dose}"/></td>
+                    <td><h:outputText value="#{event.patient}"/></td>
+                </ui:repeat>
+            </h:panelGroup>
+
+        </tr>
+    </table>
+
+
+</div>
+
+    <f:websocket channel="push" onmessage="updatelist" />
+
+</h:body>
+
+</html>

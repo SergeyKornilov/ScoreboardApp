@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+>
+<h:head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"></link>
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</h:head>
+<h:body>
+
+    <h1>Events Today</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+        <h:dataTable class="table" id="txt_count" value="#{restClient.events}" var="o">
+
+        <h:column>
+            <f:facet name="header">Date</f:facet>
+            #{restClient.formatDate(o.date)}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Time</f:facet>
+            #{o.time}
+        </h:column>
+
+        <h:column>
+            <!-- column header -->
+            <f:facet name="header">Event description</f:facet>
+            <!-- row record -->
+            #{o.name}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Status</f:facet>
+            #{o.status}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Type</f:facet>
+            #{o.type}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Dose</f:facet>
+            #{o.dose}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Patient</f:facet>
+            #{o.patient}
+        </h:column>
+
+    </h:dataTable>
+
+    </div>
+        </div>
+    </div>
+    <h:form>
+
+        <p:poll interval="2" listener="#{restClient.getJsonEvent}" update="txt_count"/>
+    </h:form>
+
+</h:body>
+</html>
+
