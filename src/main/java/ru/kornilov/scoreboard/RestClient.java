@@ -2,31 +2,21 @@ package ru.kornilov.scoreboard;
 
 import ru.kornilov.scoreboard.DTO.EventDTO;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
-import javax.ejb.Stateless;
-import javax.enterprise.inject.Produces;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.push.Push;
-import javax.faces.push.PushContext;
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
+@Named
 @Singleton
 @ManagedBean(name="restClient")
 @SessionScoped
@@ -42,6 +32,7 @@ public class RestClient {
     private Client client = ClientBuilder.newClient();
 
     public void getJsonEvent() {
+        System.out.println("hello from getJsonEvent");
 
         Client client = ClientBuilder.newClient();
         WebTarget target = client.target(REST_URI);

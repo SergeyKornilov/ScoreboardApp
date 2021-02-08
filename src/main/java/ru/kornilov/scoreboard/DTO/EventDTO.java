@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 public class EventDTO implements Serializable {
 
-
+    private String id;
     private String date;
     private String status;
     private String time;
@@ -22,7 +22,7 @@ public class EventDTO implements Serializable {
     public EventDTO() {
     }
 
-    public EventDTO(String date, String status, String time, String reason, String type, String name, String dose, String patient) {
+    public EventDTO(String id, String date, String status, String time, String reason, String type, String name, String dose, String patient) {
         this.date = date;
         this.status = status;
         this.time = time;
@@ -97,10 +97,19 @@ public class EventDTO implements Serializable {
         this.patient = patient;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
-        return "EventJsonDTO{" +
-                "date='" + date + '\'' +
+        return "EventDTO{" +
+                "id='" + id + '\'' +
+                ", date='" + date + '\'' +
                 ", status='" + status + '\'' +
                 ", time='" + time + '\'' +
                 ", reason='" + reason + '\'' +
@@ -110,4 +119,5 @@ public class EventDTO implements Serializable {
                 ", patient='" + patient + '\'' +
                 '}';
     }
+
 }
